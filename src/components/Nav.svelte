@@ -62,7 +62,7 @@
 		right: 0;
 		z-index: 100;
 		padding: 1.5rem 2.5rem;
-		background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, transparent 100%);
+		background: rgba(0, 0, 0, 0.96);
 	}
 
 	.nav-inner {

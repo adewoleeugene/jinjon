@@ -77,15 +77,15 @@
 </section>
 
 <style>
-	.design-transition { position:relative; left:50%; width:100vw; height:330vh; margin-left:-50vw; background:#040503; }
-	.transition-stage { position:sticky; top:0; height:100svh; overflow:hidden; display:grid; place-items:center; background:radial-gradient(circle at 50% 50%,rgba(193,255,46,.035),transparent 32rem),#040503; }
+	.design-transition { position:relative; left:50%; width:100vw; height:330vh; margin-left:-50vw; background:var(--bg); }
+	.transition-stage { position:sticky; top:0; height:100svh; overflow:hidden; display:grid; place-items:center; background:var(--bg); }
 	.transition-meta { position:absolute; left:clamp(1rem,3vw,3rem); right:clamp(1rem,3vw,3rem); top:2rem; display:grid; grid-template-columns:1fr auto 1fr; font-family:'JetBrains Mono',monospace; font-size:.5rem; letter-spacing:.15em; color:rgba(193,255,46,.55); }
 	.transition-meta span:nth-child(2){text-align:center}.transition-meta span:last-child{text-align:right}
 	.beats { position:absolute; inset:0; z-index:2; display:grid; place-items:center; }
 	.beat { position:absolute; max-width:1050px; padding:2rem; font-size:clamp(2.8rem,7vw,7.3rem); font-weight:800; line-height:.94; letter-spacing:-.06em; text-align:center; text-wrap:balance; color:#e8e8e8; }
 	.beat em { font-family:'Playfair Display',Georgia,serif; font-weight:400; color:var(--accent); }
 	.final-beat { text-transform:none; }
-	.output { position:absolute; z-index:3; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem; background:#070806; font-family:'JetBrains Mono',monospace; font-size:clamp(.62rem,1vw,.8rem); line-height:1.9; letter-spacing:.13em; text-align:center; color:#818978; }
+	.output { position:absolute; z-index:3; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem; background:var(--bg); font-family:'JetBrains Mono',monospace; font-size:clamp(.62rem,1vw,.8rem); line-height:1.9; letter-spacing:.13em; text-align:center; color:#818978; }
 	.output-mark { width:70px; height:70px; display:grid; place-items:center; border:1px solid var(--accent); color:var(--accent); font-family:'Satoshi',sans-serif; font-size:2rem; font-weight:700; box-shadow:0 0 35px rgba(193,255,46,.1); }
 	.output p:last-child { color:var(--accent); }
 	.output-line { width:min(430px,70vw); height:2px; background:rgba(193,255,46,.12); }

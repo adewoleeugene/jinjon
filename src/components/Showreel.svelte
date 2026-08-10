@@ -60,7 +60,7 @@
 		border: 1px solid var(--border);
 		overflow: hidden;
 		position: relative;
-		background: #0d0d0d;
+		background: var(--bg);
 		cursor: none;
 		display: flex;
 		align-items: center;
@@ -70,7 +70,7 @@
 	.reel-gradient {
 		position: absolute;
 		inset: 0;
-		background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+		background: transparent;
 	}
 
 	.play-btn {

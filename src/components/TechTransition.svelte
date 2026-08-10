@@ -90,7 +90,7 @@
 	.time-travel {
 		position: relative;
 		height: 360vh;
-		background: #020202;
+		background: var(--bg);
 	}
 
 	.sticky-scene {
@@ -98,9 +98,7 @@
 		top: 0;
 		height: 100svh;
 		overflow: hidden;
-		background:
-			radial-gradient(circle at 50% 50%, rgba(194, 255, 46, calc(0.03 + var(--travel) * 0.07)), transparent 35%),
-			#020202;
+		background: var(--bg);
 		perspective: 700px;
 	}
 
@@ -185,7 +183,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.9rem;
-		background: #050704;
+		background: var(--bg);
 		font-family: 'JetBrains Mono', monospace;
 		font-size: clamp(0.66rem, 1vw, 0.85rem);
 		letter-spacing: 0.14em;

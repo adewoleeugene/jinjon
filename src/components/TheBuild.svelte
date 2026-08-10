@@ -185,7 +185,7 @@
 	.build {
 		position: relative;
 		padding: clamp(6rem, 12vw, 11rem) clamp(1.5rem, 5vw, 5rem);
-		background: #060606;
+		background: var(--bg);
 		overflow: hidden;
 	}
 
@@ -537,9 +537,7 @@
 	/* ── Systems archive / retro lab ───────────────────────── */
 	.build {
 		padding-top: clamp(5rem, 9vw, 8rem);
-		background:
-			radial-gradient(circle at 80% 15%, rgba(193, 255, 46, 0.055), transparent 28rem),
-			#050604;
+		background: var(--bg);
 	}
 
 	.scanlines {
