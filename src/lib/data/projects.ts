@@ -160,6 +160,28 @@ export const projects: Project[] = [
 		media: '',
 		mediaType: 'image'
 	},
+	{
+		id: 'p3',
+		slug: 'photo-three',
+		title: 'After the Rain',
+		discipline: 'photography',
+		year: 2024,
+		description: 'Reflections, passing figures, and city light after rainfall.',
+		tags: ['Night', 'Street', 'Colour'],
+		media: '',
+		mediaType: 'image'
+	},
+	{
+		id: 'p4',
+		slug: 'photo-four',
+		title: 'Quiet Geometry',
+		discipline: 'photography',
+		year: 2023,
+		description: 'An architectural study of proportion, shadow, and negative space.',
+		tags: ['Architecture', 'Minimal', 'Monochrome'],
+		media: '',
+		mediaType: 'image'
+	},
 	// Marketing
 	{
 		id: 'm1',

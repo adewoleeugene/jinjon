@@ -8,8 +8,7 @@
 		{ id: 'the-build', activeId: 'engineering', number: '03', title: 'The Build' },
 		{ id: 'chapter-design', activeId: 'design', number: '04', title: 'Design Studio' },
 		{ id: 'chapter-film', activeId: 'film', number: '05', title: 'Film & Video' },
-		{ id: 'chapter-photography', activeId: 'photography', number: '06', title: 'Photography' },
-		{ id: 'chapter-marketing', activeId: 'marketing', number: '07', title: 'Marketing' }
+		{ id: 'chapter-photography', activeId: 'photography', number: '06', title: 'Photography' }
 	];
 
 	function scrollTo(id: string) {
