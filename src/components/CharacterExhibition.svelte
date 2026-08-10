@@ -27,8 +27,8 @@
 	];
 
 	// The entrance plays as staged beats across the first stretch of scroll:
-	//   text alone on black → text fades → door fades into view → door opens → walk in.
-	const WALK_START = 0.27;
+	//   portfolio → exhibition → invitation → door reveal → door opens → walk in.
+	const WALK_START = 0.38;
 
 	let section: HTMLElement;
 	let progress = $state(0); // 0..1 across the whole gallery scroll
@@ -39,10 +39,16 @@
 		return Math.min(Math.max((p - a) / (b - a), 0), 1);
 	}
 
-	const textFade = $derived(1 - range(progress, 0.11, 0.16));  // invitation lingers, then fades
-	const sceneReveal = $derived(range(progress, 0.15, 0.20));   // black lifts → the door appears
-	const doorAmount = $derived(range(progress, 0.21, 0.27));    // door swings open
-	const atEntrance = $derived(progress < 0.2);
+	function hold(p: number, enter: number, leave: number, fade = 0.045) {
+		return range(p, enter, enter + fade) * (1 - range(p, leave - fade, leave));
+	}
+
+	const openingBeat = $derived(1 - range(progress, 0.065, 0.105));
+	const exhibitionBeat = $derived(hold(progress, 0.085, 0.195));
+	const invitationBeat = $derived(hold(progress, 0.175, 0.305, 0.04));
+	const sceneReveal = $derived(range(progress, 0.285, 0.335)); // black lifts → the door appears
+	const doorAmount = $derived(range(progress, 0.325, WALK_START)); // door swings open
+	const atEntrance = $derived(progress < WALK_START);
 
 	// How far the camera has walked along the (unrolled) L-path.
 	const dolly = $derived(range(progress, WALK_START, 1) * TOTAL_TRAVEL);
@@ -267,14 +273,35 @@
 
 		<div class="blackout" aria-hidden="true" style="opacity:{1 - sceneReveal}"></div>
 
-		<div class="entrance" class:gone={textFade <= 0} style="--fade:{textFade}">
-			<p class="eyebrow">Virtual Gallery</p>
-			<h2 id="gallery-title">Step inside</h2>
-			<p class="lede">Open the door, or scroll to walk through.</p>
-			<button type="button" class="enter-btn" onclick={enterGallery}>
-				Enter <span aria-hidden="true">↓</span>
-			</button>
+		<div class="museum-meta" aria-hidden="true" style="opacity:{1 - range(progress, 0.26, 0.3)}">
+			<span>AEJ / COLLECTION 01</span>
+			<span>ILLUSTRATION → EXHIBITION</span>
+			<span>{String(Math.round(range(progress, 0, WALK_START) * 100)).padStart(3, '0')}%</span>
 		</div>
+
+		<div class="entrance-beats">
+			<p class="entrance-beat" style="opacity:{openingBeat}">
+				A portfolio can<br />show you the <em>work.</em>
+			</p>
+			<p class="entrance-beat" style="opacity:{exhibitionBeat}">
+				Some work asks<br />to be <em>entered.</em>
+			</p>
+
+			<div class="entrance invitation" class:gone={invitationBeat <= 0} style="--fade:{invitationBeat}">
+				<p class="eyebrow">Chapter 01 · Virtual Gallery</p>
+				<h2 id="gallery-title"><span>The Illustration</span> Museum</h2>
+				<p class="lede">Open the door, or scroll to walk through.</p>
+				<button type="button" class="enter-btn" onclick={enterGallery}>
+					Enter <span aria-hidden="true">↓</span>
+				</button>
+			</div>
+		</div>
+
+		<header class="mobile-museum-intro">
+			<p class="eyebrow">Chapter 01 · Illustration</p>
+			<h2><span>The Illustration</span> Museum</h2>
+			<p>Characters, stories and visual experiments—curated room by room.</p>
+		</header>
 
 		<div class="room-status" class:hidden={atEntrance} aria-hidden="true">
 			<span>{roomLabel}</span>
@@ -425,7 +452,39 @@
 		pointer-events: none;
 	}
 
-	/* ── Entrance overlay: title + Enter, seen first on black ── */
+	/* ── Entrance transition: editorial beats resolve into the gallery door ── */
+	.museum-meta {
+		position: absolute;
+		z-index: 8;
+		left: clamp(1rem, 3vw, 3rem);
+		right: clamp(1rem, 3vw, 3rem);
+		top: 2rem;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		font: 600 0.52rem 'JetBrains Mono', monospace;
+		letter-spacing: 0.16em;
+		color: rgba(200, 255, 0, 0.58);
+		text-transform: uppercase;
+	}
+
+	.museum-meta span:nth-child(2) { text-align: center; }
+	.museum-meta span:last-child { text-align: right; }
+
+	.entrance-beats { position: absolute; inset: 0; z-index: 7; display: grid; place-items: center; pointer-events: none; }
+	.entrance-beat {
+		position: absolute;
+		max-width: 1100px;
+		padding: 2rem;
+		font-size: clamp(3rem, 7.4vw, 7.8rem);
+		font-weight: 850;
+		line-height: 0.9;
+		letter-spacing: -0.065em;
+		text-align: center;
+		text-wrap: balance;
+		color: #e8e8e8;
+	}
+	.entrance-beat em { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; color: var(--accent); }
+
 	.entrance {
 		position: absolute;
 		inset: 0;
@@ -444,12 +503,15 @@
 
 	.entrance h2 {
 		margin-top: 0.9rem;
-		font-size: clamp(3rem, 7vw, 6.5rem);
+		font-size: clamp(3.5rem, 9vw, 9rem);
 		font-weight: 900;
-		line-height: 0.9;
+		line-height: 0.78;
+		letter-spacing: -0.075em;
 		text-transform: uppercase;
 		text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
 	}
+
+	.entrance h2 span { display: block; font-size: 0.34em; line-height: 1.8; letter-spacing: 0.13em; color: var(--text-dim); }
 
 	.enter-btn {
 		margin-top: 2.2rem;
@@ -497,6 +559,8 @@
 		line-height: 1.5;
 		color: var(--text-dim);
 	}
+
+	.mobile-museum-intro { display: none; }
 
 	/* ── Pinned stage ─────────────────────── */
 	.viewport {
@@ -882,7 +946,20 @@
 		.scene { position: relative; transform: none; transform-style: flat; }
 		.room { position: relative; left: auto; top: auto; width: auto; height: auto; transform-style: flat; display: grid; gap: 3.5rem; }
 		.lfloor, .lceil, .lwall, .vignette, .walk-progress, .room-status,
-		.doorway, .entrance, .spot, .hotspot { display: none; }
+		.doorway, .entrance-beats, .museum-meta, .spot, .hotspot { display: none; }
+
+		.mobile-museum-intro {
+			display: block;
+			max-width: 42rem;
+			margin: 1rem auto 3rem;
+			padding-block: 2rem 2.5rem;
+			border-top: 1px solid var(--border);
+			border-bottom: 1px solid var(--border);
+			text-align: center;
+		}
+		.mobile-museum-intro h2 { margin-top: 1rem; font-size: clamp(3.2rem, 15vw, 6rem); line-height: .82; letter-spacing: -.07em; text-transform: uppercase; }
+		.mobile-museum-intro h2 span { display: block; font-size: .32em; line-height: 1.8; letter-spacing: .12em; color: var(--text-dim); }
+		.mobile-museum-intro > p:last-child { margin: 1.25rem auto 0; max-width: 34ch; color: var(--text-dim); line-height: 1.55; }
 
 		.exhibit {
 			position: relative;

@@ -101,6 +101,17 @@ export const projects: Project[] = [
 		media: '',
 		mediaType: 'video'
 	},
+	{
+		id: 'f3',
+		slug: 'film-three',
+		title: 'Visual Study',
+		discipline: 'film',
+		year: 2023,
+		description: 'An experimental motion study shaped through rhythm, texture, and light.',
+		tags: ['Art Direction', 'Experimental', 'Edit'],
+		media: '',
+		mediaType: 'video'
+	},
 	// Art
 	{
 		id: 'a1',
