@@ -1,5 +1,6 @@
 <script lang="ts">
 	const socials = [
+		{ label: 'WhatsApp', href: 'https://wa.me/23278814080?text=Hello%20Eugene%2C%20I%20came%20across%20your%20portfolio.' },
 		{ label: 'GitHub', href: 'https://github.com/' },
 		{ label: 'LinkedIn', href: 'https://linkedin.com/in/' },
 		{ label: 'Instagram', href: 'https://instagram.com/' },
@@ -21,13 +22,15 @@
 				Let's build<br />
 				<span class="contact-heading-accent">something great.</span>
 			</h2>
-			<a
-				href="mailto:eng@christex.foundation"
-				class="contact-email"
-				data-cursor="Email"
-			>
-				eng@christex.foundation
-			</a>
+			<div class="contact-emails">
+				<a href="mailto:eugene.a.c.john@gmail.com" class="contact-email" data-cursor="Email">
+					eugene.a.c.john@gmail.com
+				</a>
+				<span aria-hidden="true">/</span>
+				<a href="mailto:adewoleeugenejohn@gmail.com" class="contact-email" data-cursor="Email">
+					adewoleeugenejohn@gmail.com
+				</a>
+			</div>
 		</div>
 
 		<div class="contact-bottom">
@@ -64,7 +67,7 @@
 	}
 
 	.contact-inner {
-		max-width: 1200px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 4rem;
@@ -116,7 +119,6 @@
 
 	.contact-email {
 		display: inline-block;
-		margin-top: 2rem;
 		font-size: clamp(1rem, 2.5vw, 1.5rem);
 		color: var(--text-dim);
 		border-bottom: 1px solid var(--border);
@@ -124,6 +126,8 @@
 		transition: all 0.2s ease;
 		letter-spacing: -0.01em;
 	}
+	.contact-emails { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem; margin-top:2rem; }
+	.contact-emails > span { color:var(--accent); font-size:1rem; }
 
 	.contact-email:hover {
 		color: var(--accent);
@@ -199,5 +203,7 @@
 		.contact-meta {
 			align-items: flex-start;
 		}
+		.contact-emails { align-items:flex-start; flex-direction:column; gap:.45rem; }
+		.contact-emails > span { display:none; }
 	}
 </style>

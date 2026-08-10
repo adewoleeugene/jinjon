@@ -47,7 +47,7 @@
 			{/each}
 		</div>
 
-		<a href="mailto:eng@christex.foundation" class="nav-cta" data-cursor="Email">
+		<a href="mailto:eugene.a.c.john@gmail.com" class="nav-cta" data-cursor="Email">
 			Let's talk
 		</a>
 	</div>

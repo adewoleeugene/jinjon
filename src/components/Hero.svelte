@@ -128,14 +128,17 @@
 			</div>
 		</div>
 		<div class="hero-building" class:visible={bodyVisible}>
-			<span class="building-label">Currently building:</span>
-			<span class="building-items">
-				<span>Lyv</span>
-				<span class="building-sep">//</span>
-				<span>AI Workshops</span>
-				<span class="building-sep">/</span>
-				<span>Participation Infrastructure</span>
-			</span>
+			<div class="building-row">
+				<span class="building-label">Currently building:</span>
+				<span class="building-items">
+					<span>Lyv</span>
+					<span class="building-sep">//</span>
+					<span>AI Workshops</span>
+					<span class="building-sep">/</span>
+					<span>Participation Infrastructure</span>
+				</span>
+			</div>
+			<span class="learning-status"><i></i> CAPM course in progress</span>
 		</div>
 	</div>
 
@@ -331,11 +334,15 @@
 
 	.hero-building {
 		display: flex;
-		align-items: center;
-		gap: 0.6rem;
+		flex-direction:column;
+		align-items:flex-end;
+		gap:.45rem;
 		opacity: 0;
 		transition: opacity 0.6s ease 0.4s;
 	}
+	.building-row { display:flex; align-items:center; gap:.6rem; }
+	.learning-status { display:flex; align-items:center; gap:.45rem; color:#5f5f5f; font:500 .5rem 'JetBrains Mono',monospace; letter-spacing:.12em; text-transform:uppercase; }
+	.learning-status i { width:4px; height:4px; border-radius:50%; background:var(--accent); opacity:.65; }
 
 	.hero-building.visible { opacity: 1; }
 
@@ -480,5 +487,7 @@
 
 		.hero-disciplines,
 		.hero-name-side { display: none; }
+		.hero-building { align-items:flex-start; }
+		.building-row { align-items:flex-start; }
 	}
 </style>
