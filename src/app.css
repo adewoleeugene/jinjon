@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+	:root {
+		--bg: #000000;
+		--surface: #111111;
+		--border: #1e1e1e;
+		--muted: #3a3a3a;
+		--text: #e8e8e8;
+		--text-dim: #888888;
+		--accent: #c8ff00;
+		--accent-warm: #ff6b35;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	html {
+		background-color: var(--bg);
+		color: var(--text);
+		font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		scroll-behavior: smooth;
+		cursor: none;
+	}
+
+	body {
+		background-color: var(--bg);
+		overflow-x: hidden;
+	}
+
+	::selection {
+		background: var(--accent);
+		color: var(--bg);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		cursor: none;
+	}
+
+	button {
+		cursor: none;
+	}
+}
+
+/* Chapter ghost numbers */
+.chapter-number {
+	font-size: clamp(8rem, 20vw, 18rem);
+	font-weight: 900;
+	line-height: 1;
+	color: transparent;
+	-webkit-text-stroke: 1px var(--border);
+	user-select: none;
+	pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 2px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--muted);
+}
